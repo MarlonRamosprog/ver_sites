@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+body {
+	background-color: #2d3436;
+	margin:20px; 
+}
+
+h1{
+	text-align: center;
+	font-family: open sans;
+	margin: 10px auto;
+	color: #dfe6e9;
+	padding-bottom: 10px;
+}
+
+h2 {
+	text-align: center;
+	color: #dfe6e9;
+	font-family: open sans;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	padding-left: 22px;
+}
+
+h3 {
+	color: #dfe6e9;
+	font-family: open sans;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	padding-left: 22px;	
+}
+
+h4{
+	color: #FFF;
+	font-family: open sans;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	padding-left: 22px;
+}
+
+.botao_acao {
+	font-size: 15px;
+	color: #FFF;
+	padding: 5px;
+	margin: 0px 0px 10px 20px;
+	background-color: #00b894;
+	border-radius: 5px;	
+}
+
+.botao_ir {
+	font-size: 15px;
+	color: #FFF;
+	padding: 5px;
+	margin: 0px 0px 10px 20px;
+	background-color: #00b894;
+	border-radius: 5px;	
+	position: relative;
+}
+
+.botao_deletar {
+	font-size: 15px;
+	color: #FFF;
+	padding: 5px;
+	margin: 0px 0px 10px 20px;
+	background-color: #d63031;
+	border-radius: 5px;	
+	position: relative;	
+}
+
+.botao_limpar {
+	font-size: 15px;
+	color: #000;
+	padding: 5px;
+	margin: 0px 0px 10px 20px;
+	background-color: #fdcb6e;
+	border-radius: 5px;	
+	position: relative;	
+}
+
+p {
+	font-family: open sans;
+	margin-top: 20px;
+	margin-left: 20px;
+	color: #dfe6e9;
+	margin-bottom: 20px;
+}
+
+label {
+	font-family: open sans;
+	margin-top: 20px;
+	margin-left: 20px;
+	color: #dfe6e9;
+	margin-bottom: 0px;
+}
+
+hr { 
+	margin-right: 20px;
+	margin-left: 20px;
+	width: 95%;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+
+.celula {
+	border: 0px solid white;
+	margin: 5px;
+	padding: 5px;
+	width: 300px;
+	background: #636e72;
+	border-radius: 5px;	
+}
+
+.celula a {
+	text-decoration: none;
+}
+
+
+.botoes {
+	width: 100%;
+	display: flex;
+}
+
+.botao {
+	position: relative;
+	width: 20%;
+}

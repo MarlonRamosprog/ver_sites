@@ -1,0 +1,60 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+h1 {
+	font-family: open sans;
+	text-align: center;
+}
+
+p {
+	font-family: open sans;
+	font-size: 20px;
+}
+
+label {
+	font-family: open sans;
+	font-size: 20px;
+	color: #228B22;
+	padding: 10px;
+}
+
+.menu {
+	width: 500px;
+	max-width: 80%;
+	position: relative;
+	margin: 0px auto;
+	padding: 20px;
+	border: 2px solid black;
+	box-shadow: 5px 5px grey;
+	background-color: #98FB98;
+	border-radius: 10px;
+}
+
+.menu a, li, p {
+	font-family: open sans;
+	color: #228B22;
+	font-size: 20px;
+	text-decoration: none;
+}
+
+/* Código para dar o efeito da mudança de cor em 0.5 segundos. */
+.menu ul li {
+  transition: all .5s;
+}
+
+/* código que faz mudar a cor para vermelho e background para verde */
+li:hover {
+  color: #191970;
+}
+
+textarea {
+	width: 450px;
+	height: 450px;
+	resize: none; 
+}
+
+.container_foto {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+

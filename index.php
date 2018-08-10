@@ -1,54 +1,60 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 	<title>Minhas Contas nas Redes da Web</title>
 	<meta charset="UTF-8">	
-	<link rel="stylesheet" type="text/css" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>	
 	<?php
 		//conexão
-		$Servidor = "localhost";
-		$usuario = "id3757134_marlon";
-		$senha = "desenho4ever";
-		$banco = "id3757134_bd_marlon";
-
-		$connect = new mysqli($Servidor, $usuario, $senha, $banco);
-
-		if ($connect->connect_error) {
-			die("<p>Erro de conexão!</p>");
-		}
+		include("conn.php");
 	?>
 	
 	<header>
 		<h1>Lista de sites</h1>
 
-		<a href="cadastro.php"><button class="botao_acao">Cadastro</button></a>
+		<div class="container2">
+			<div class="botao_acao"><a href="login.php">Cadastro</a></div>
+			<div class="botao_acao"><a href="login.php">Início</a></div>
+		</div>
 		
-		<br />	
+		<br />
+
+		<div class="margin_pesquisa">
+		<form action="pesquisa.php" method="post">
+			  	<div class="form-group">
+				    <input type="text" name="palavra_chave" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite aqui sua palavra-chave">
+				    <input type="submit" name="pesquisar" value="Pesquisar" type="button" class="btn btn-success">
+			  	</div>
+		  	</form>
+		  </div>
+		  
 	</header>
 
 	<?php
 		//lista de sites por assunto
 		function secao($assunto) {
-			global $connect;
+			global $conn;
  
 			echo "
 			<section>
-				<div class='container'>
+				<div class='container2'>
 					<h2>" . $assunto . "</h2>
 				</div>
 	    
 				<hr />
 
-				<div class='container'>
+				<div class='container2'>
 				";
 
 
 
 			        $sql = "SELECT * FROM sites WHERE assunto = '$assunto' ORDER BY id DESC";
-					$result = $connect->query($sql);
+					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
 				        while($row = $result->fetch_assoc()) {
 					        echo "			
@@ -59,11 +65,12 @@
 
 						<div class='botoes'>
 							<div class='botao'>					
-								<a href='" . $row['endereco'] ."' target=_blank><button class='botao_ir'>Ir!</button></a>
+								<div class='botao_ir'><a href='" . $row['endereco'] ."' target=_blank>Ir!</a></div>
 							</div>
 							<div class='botao'>				
-								<form action='excluido.php' method='post'>
-								    <input type='hidden' name='id' value=" . $row['id'] .">
+								<form action='excluir.php' method='post'>
+								    <input type='hidden' name='id' value='" . $row['id'] ."'>
+								    <input type='hidden' name='site' value='" . $row['site'] ."'>
 								    <input type='submit' name='deletar' value='deletar' class='botao_deletar'/>
 								</form>
 							</div>
@@ -81,7 +88,7 @@
 				<br />";
 		}
 
-		secao('Programação');
+		secao('Programacao');
 		secao('Filosofia');
 		secao('Lazer');
 		secao('Outros');
@@ -89,14 +96,14 @@
 		echo "				
 				<hr />";
 		$sql = "SELECT * FROM sites";
-		$result = $connect->query($sql);		
+		$result = $conn->query($sql);		
 		$qtde = mysqli_num_rows($result);
 				echo "						
 					<p><h4><b>" . $qtde . "</b> atalhos encontrados.</h4><p>";
 
-		$connect->close();
+		$conn->close();
 	?>		
-	<a href="cadastro.php"><button class="botao_acao">Cadastro</button></a>
+	<div class="botao_acao"><a href="login.php">Cadastro</a></div>
 		
 </body>
 </html>

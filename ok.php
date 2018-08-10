@@ -4,6 +4,7 @@
 	<title>Cadastro Realizado com Sucesso!</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="style.css">
+<?php require("conn.php"); ?>
 </head>
 <body>
 	<?php
@@ -11,27 +12,30 @@
 		$endereco = $_POST["endereco"];
 		$assunto = $_POST["assunto"];
 		
-		$Servidor = "localhost";
-		$usuario = "id3757134_marlon";
-		$senha = "desenho4ever";
-		$banco = "id3757134_bd_marlon";
-		$conn = new mysqli($servidor, $usuario, $senha, $banco);
-		
-		if ($conn->connect_error) {
+		/*if ($conn->connect_error) {
 			die("<p>Erro de conexão!</p>");
 		}
 		
 		$sql = "INSERT INTO sites (site, endereco, assunto) VALUES ('$site', '$endereco', '$assunto')";			
-		if ($conn->query($sql) === TRUE) {
-		    echo "<p class='text-center'>Site cadastrado com Sucesso!</p><br />";
-		} else {
-		    echo "Error: " . $sql . "<br>" . $conn->error;
-		}
+		if ($conn->query($sql) === FALSE) {
+		    echo "Houve um problema no servidor!";
+		}*/
+
+		/* Prepared statement, stage 1: prepare */
+		
+		$stmt = $conn->prepare("INSERT INTO sites (site, endereco, assunto) VALUES (?, ?, ?)");
+		$stmt->bind_param("sss", $site, $endereco, $assunto);
+		$stmt->execute();
+		$stmt->close();
 
 		$conn->close();
+		
+		echo "
+		<script language='javascript'>
+			    window.location='index.php';
+			    alert('Site cadastrado com sucesso!');
+			</script>";
 	?>
-	<div class="titulo"><p>Volte aqui!</p></div>
-	<a href="index.php"><button class="botao_acao">Início/Sites</button></a>
-	<a href="cadastro.php"><button class="botao_acao">Cadastro</button></a>					
+					
 </body>
 </html>

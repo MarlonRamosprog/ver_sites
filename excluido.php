@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='pt-br'>
 <head>
 	<title>Minhas Contas nas Redes da Web</title>
 	<meta charset="UTF-8">	
@@ -7,28 +7,51 @@
 </head>
 <body>					
 	<?php
-		$id = $_POST["id"];
+	    $id = $_POST["id"];
+		$usuario = $_POST['usuario'];
+		$senha = $_POST['senha'];
 
-		$Servidor = "localhost";
-		$usuario = "id3757134_marlon";
-		$senha = "desenho4ever";
-		$banco = "id3757134_bd_marlon";
-
-		$connect = new mysqli($Servidor, $usuario, $senha, $banco);
-
-		if ($connect->connect_error) {
-			die("<p>Erro de conexão!</p>");
+		//segurança do cadastro
+		function expulsaVisitante() {			
+			echo "
+				<script>
+					alert('Usuário ou senha inválidos!');
+					location.href='index.php';
+				</script>";
 		}
 
-		$del = "DELETE FROM sites WHERE ID = '$id'";
-		$delete = $connect->query($del);
-		echo "<p class='titulo'>Atalho deletado!</p>";
+		function excluir(){ 
+		    global $id;
 
-		$connect->close();
+			//conexão
+		        include("conn.php");
+
+			$connect = new mysqli($Servidor, $usuario, $senha, $banco);
+
+			if ($connect->connect_error) {
+				die("<p>Erro de conexão!</p>");
+			}
+
+			$del = "DELETE FROM sites WHERE id = '$id'";
+			$delete = $connect->query($del);
+
+			$connect->close();	
+			
+			echo "
+			<script language='javascript'>
+			    window.location='index.php';
+			    alert('Atalho deletado!');
+			</script>";
+		}
+
+		if ($usuario == 'marlon' && $senha == 'barbarasaramos') {
+			excluir();
+		} else {			
+			expulsaVisitante();
+		}		
+	
 	?>
-	<div class="titulo"><p>Volte aqui!</p></div>
-	<a href="index.php"><button class="botao_acao">Início/Sites</button></a>
-	<a href="cadastro.php"><button class="botao_acao">Cadastro</button></a>		
+		
 		
 </body>
 </html>

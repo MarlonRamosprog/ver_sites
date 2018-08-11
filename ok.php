@@ -12,9 +12,9 @@
 		$endereco = $_POST["endereco"];
 		$assunto = $_POST["assunto"];
 		
-		/*if ($conn->connect_error) {
+		if ($conn->connect_error) {
 			die("<p>Erro de conexão!</p>");
-		}
+		}/*
 		
 		$sql = "INSERT INTO sites (site, endereco, assunto) VALUES ('$site', '$endereco', '$assunto')";			
 		if ($conn->query($sql) === FALSE) {

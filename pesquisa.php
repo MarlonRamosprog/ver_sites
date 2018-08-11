@@ -17,23 +17,18 @@
 	?>
 	
 	<header>
-		<h1>Lista de sites</h1>
-
-		<div class="container2">
-			<div class="botao_acao"><a href="login.php">Cadastro</a></div>
-			<div class="botao_acao"><a href="index.php">Início</a></div>
-		</div>
+		<?php include("cabecalho.php"); ?>
 		
 		<br />
 
 		<div class="margin_pesquisa">
-		<form action="" method="post">
+			<form action="" method="post">
 			  	<div class="form-group">
 				    <input type="text" name="palavra_chave" placeholder="Digite aqui sua palavra-chave" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $palavra_chave ?>">
 				    <input type="submit" name="pesquisar" value="Pesquisar" type="button" class="btn btn-success">
 			  	</div>
 		  	</form>
-		  </div>
+		</div>
 		  
 	</header>
 
@@ -48,24 +43,20 @@
 
 			if ($result->num_rows > 0) {
 		        while($row = $result->fetch_assoc()) {
-			        echo "<div class='celula'>
-								<a href='" . $row['endereco'] ."'><h3>" . $row['id'] . " - " . $row['site'] . "</h3></a>
+			        echo "	<div class='celula'>
+								<a href='" . $row['endereco'] ."'><h4>" . $row['id'] . " - " . $row['site'] . "</h4></a>
 
 								<br />
 
 								<div class='botoes'>
-									<div class='botao'>					
-										<div class='botao_ir'><a href='" . $row['endereco'] ."' target=_blank>Ir!</a></div>
-									</div>
-									<div class='botao'>				
-										<form action='excluir.php' method='post'>
-										    <input type='hidden' name='id' value='" . $row['id'] ."'>
-										    <input type='hidden' name='site' value='" . $row['site'] ."'>
-										    <input type='submit' name='deletar' value='deletar' class='botao_deletar'/>
-										</form>
-									</div>
+									<a href='" . $row['endereco'] ."' target=_blank><button class='btn btn-success'>Ir!</button></a>
+									<form action='excluir.php' method='post'>
+									    <input type='hidden' name='id' value='" . $row['id'] ."'>
+									    <input type='hidden' name='site' value='" . $row['site'] ."'>
+									    <input type='submit' name='deletar' value='deletar' class='btn btn-danger'/>
+									</form>
 								</div>							
-							</div>";		        			
+							</div>";	        			
 					}
 			} else {
 			    echo "0 results";
@@ -77,7 +68,9 @@
 		?>		
 	</div>
 
-	<div class="botao_acao"><a href="login.php">Cadastro</a></div>
+	<footer>
+		<?php include("rodape.php"); ?>
+	</footer>
 		
 </body>
 </html>
